@@ -20,17 +20,13 @@ const handleRegister = (req, res, db, bcrypt) => {
             name: name,
             joined: new Date()
           })
-          console.log('2')
           .then(user => {
             res.json(user[0]);
           })
       })
-      console.log('3')
       .then(trx.commit)
       .catch(trx.rollback)
-      console.log('4')
     })
-    console.log('5')
     .catch(err => res.status(400).json('4'))
 }
 
