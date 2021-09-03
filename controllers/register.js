@@ -11,7 +11,7 @@ const handleRegister = (req, res, db, bcrypt) => {
       })
       .into('login')
       .returning('email')
-      .catch(err => res.status(400).json('1'))
+      console.log('1')
       .then(loginEmail => {
         return trx('users')
           .returning('*')
@@ -20,16 +20,17 @@ const handleRegister = (req, res, db, bcrypt) => {
             name: name,
             joined: new Date()
           })
-          .catch(err => res.status(400).json('2'))
+          console.log('2')
           .then(user => {
             res.json(user[0]);
           })
       })
-      .catch(err => res.status(400).json('3'))
+      console.log('3')
       .then(trx.commit)
       .catch(trx.rollback)
-      .catch(err => res.status(400).json('HERE'))
+      console.log('4')
     })
+    console.log('5')
     .catch(err => res.status(400).json('4'))
 }
 
